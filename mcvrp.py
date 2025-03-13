@@ -66,8 +66,8 @@ geojson_path = root_dir + "N03-20240101_14.geojson"
 route_file = "path_list_v2.json"
 Map_Tile='https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png'
 
-GIS_HIGHT=900
-GIS_WIDE=900
+GIS_HIGHT=700
+GIS_WIDE=1000
 GIS_ZOOM=13
 
 
