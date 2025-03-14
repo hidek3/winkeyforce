@@ -462,8 +462,7 @@ if st.session_state['best_tour'] !=None:
   annering_param=st.session_state["annering_param"]
   best_obj=st.session_state['best_cost']
   best_tour=st.session_state['best_tour']
-  gis_st.write("### 計算結果:")
-  gis_st.write(f"総距離: {best_obj} km")
+  gis_st.write(f"#### 計算結果: 総距離: {best_obj} km")
   distance_matrix=annering_param['distance_matrix']
   demand=annering_param['demand']
   for item in best_tour.items():
