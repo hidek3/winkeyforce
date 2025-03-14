@@ -479,8 +479,7 @@ if st.session_state['best_tour'] !=None:
      
      it=item[1][len(item[1])-1]
      p_node += f'{get_point_name(df,re_node_list[it])}'
-     r_str=f”””ルート{item[0]} (走行距離:{distance/1000:.2f}km/配送量:{weight/1000*4:.2f}t) 
-     拠点】{p_node}”””
+     r_str=f”ルート{item[0]} (走行距離:{distance/1000:.2f}km/配送量:{weight/1000*4:.2f}t)  \n【拠点】{p_node}”
      gis_st.write(r_str)
   #best_tour_markdown = "\n".join([f"{key}: {value}" for key, value in best_tour.items()])
   #gis_st.markdown(best_tour_markdown)
