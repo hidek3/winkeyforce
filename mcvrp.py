@@ -175,8 +175,13 @@ def draw_route_v2(m, G, best_routes, path_df, node_name_list):
                   style_kwds={"weight": 10.0, "opacity": 0.5},
               )
     #folium.LayerControl().add_to(m)
-    return m
+    return 
 
+def get_point_name(data,node):
+   for i,row in data.iterrows():
+      if row['Node']== node:
+         return row['施設名']
+      
 def set_map_data():
 
   map_data={}
@@ -470,9 +475,10 @@ if st.session_state['best_tour'] !=None:
         itn=item[1][i+1]
         distance += distance_matrix[it][itn]
         weight += demand[it]
-        p_node += f'{re_node_list[it]}-'
-
-     r_str=f'ルート{item[0]} 走行距離:{distance/1000:.2f}km 配送量:{weight/1000*4:.2f}t 拠点:{p_node}'
+        p_node += f'{get_point_name(re_node_list[it])} ⇒ '
+    
+     p_node += f'{get_point_name(re_node_list[len(item[1])])}'
+     r_str=f'ルート{item[0]} (走行距離:{distance/1000:.2f}km/配送量:{weight/1000*4:.2f}t) 【拠点】{p_node}'
      gis_st.write(r_str)
   #best_tour_markdown = "\n".join([f"{key}: {value}" for key, value in best_tour.items()])
   #gis_st.markdown(best_tour_markdown)
