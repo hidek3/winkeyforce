@@ -416,7 +416,7 @@ with gis_st:
   st_folium(base_map_copy, width=GIS_WIDE, height=GIS_HIGHT)
 
 if anr_st.button("最適経路探索開始"):
-    gis_st.write(f'選択された避難所: {selected_shelter_node}//選択された配送拠点:{selected_transport_node}')
+    #gis_st.write(f'選択された避難所: {selected_shelter_node}//選択された配送拠点:{selected_transport_node}')
     if not selected_shelter_node or not selected_transport_node:
         anr_st.warning("避難所・配送拠点をそれぞれを1つ以上選択してください")
     else:
@@ -453,10 +453,25 @@ if anr_st.button("最適経路探索開始"):
 if st.session_state['best_tour'] !=None:
   best_obj=st.session_state['best_cost']
   best_tour=st.session_state['best_tour']
-  gis_st.write("\n---\n## 計算結果:")
+  gis_st.write("\n---\n### 計算結果:")
   gis_st.write(f"総距離: {best_obj} km")
-  best_tour_markdown = "\n".join([f"{key}: {value}" for key, value in best_tour.items()])
-  gis_st.markdown(best_tour_markdown)
+  distance_matrix=annering_param['distance_matrix']
+  demand=annering_param['demand']
+  for item in best_tour:
+     distance=0
+     weight=0
+     p_node=""
+     for i in range(len(item[1])-1):
+        it=item[1][i]
+        itn=item[1][i+1]
+        distance += distance_matrix[it][itn]
+        weight += demand[it]
+        p_node += f'{re_node_list[it]}-'
+
+     r_str=f'ルート{item[0]} 走行距離:{distance/1000:.2f}km 配送量:{weight/1000*4:.2f}t 拠点:{p_node}'
+     gis_st.write(r_str)
+  #best_tour_markdown = "\n".join([f"{key}: {value}" for key, value in best_tour.items()])
+  #gis_st.markdown(best_tour_markdown)
 
 if st.session_state['redraw'] !=False:
   st.rerun()
