@@ -462,7 +462,7 @@ if st.session_state['best_tour'] !=None:
   annering_param=st.session_state["annering_param"]
   best_obj=st.session_state['best_cost']
   best_tour=st.session_state['best_tour']
-  gis_st.write("\n---\n### 計算結果:")
+  gis_st.write("### 計算結果:")
   gis_st.write(f"総距離: {best_obj} km")
   distance_matrix=annering_param['distance_matrix']
   demand=annering_param['demand']
@@ -479,7 +479,7 @@ if st.session_state['best_tour'] !=None:
      
      it=item[1][len(item[1])-1]
      p_node += f'{get_point_name(df,re_node_list[it])}'
-     r_str=f'ルート{item[0]} (走行距離:{distance/1000:.2f}km/配送量:{weight/1000*4:.2f}t) 【拠点】{p_node}'
+     r_str=f'ルート{item[0]} (走行距離:{distance/1000:.2f}km/配送量:{weight/1000*4:.2f}t) \n【拠点】{p_node}'
      gis_st.write(r_str)
   #best_tour_markdown = "\n".join([f"{key}: {value}" for key, value in best_tour.items()])
   #gis_st.markdown(best_tour_markdown)
