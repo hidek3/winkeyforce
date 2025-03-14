@@ -363,6 +363,8 @@ if 'num_shelter' not in st.session_state:
     st.session_state['num_shelter'] = 0
 if 'num_transport' not in st.session_state:
     st.session_state['num_transport'] = 0
+if 'annering_param' not in st.session_state:
+    st.session_state["annering_param"] = None
 
 st.session_state['redraw'] = False
 
@@ -451,6 +453,7 @@ if anr_st.button("最適経路探索開始"):
 
 # ========== 出力 ==========
 if st.session_state['best_tour'] !=None:
+  annering_param=st.session_state["annering_param"]
   best_obj=st.session_state['best_cost']
   best_tour=st.session_state['best_tour']
   gis_st.write("\n---\n### 計算結果:")
