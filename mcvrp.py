@@ -449,6 +449,7 @@ if anr_st.button("最適経路探索開始"):
         # 結果をセッションステートに保存
         st.session_state["best_tour"] = best_tour
         st.session_state["best_cost"] = best_obj
+        st.session_state["annering_param"]=annering_param
         st.session_state['redraw'] = True
 
 # ========== 出力 ==========
