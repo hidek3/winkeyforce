@@ -457,7 +457,7 @@ if st.session_state['best_tour'] !=None:
   gis_st.write(f"総距離: {best_obj} km")
   distance_matrix=annering_param['distance_matrix']
   demand=annering_param['demand']
-  for item in best_tour:
+  for item in best_tour.items():
      distance=0
      weight=0
      p_node=""
