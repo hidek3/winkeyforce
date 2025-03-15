@@ -31,6 +31,20 @@ from amplify import FixstarsClient
 from amplify import solve
 import copy
 
+#########################################
+# streamlit custom css
+#########################################
+st.markdown("""
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Sawarabi+Gothic&display=swap');
+    body{
+        font-family: "Sawarabi Gothic", sans-serif;
+        font-style: normal;
+        font-weight: 400;
+    }
+</style>
+""")
+
 # 色指定
 _colors = [
     "green",
