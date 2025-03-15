@@ -36,11 +36,22 @@ import copy
 #########################################
 st.markdown("""
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Sawarabi+Gothic&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Sawarabi+Gothic&display=swap');
     body{
         font-family: "Sawarabi Gothic", sans-serif;
         font-style: normal;
         font-weight: 400;
+    }
+            
+    .Qheader{
+        font-size:20pt;
+        font-weight:600;
+        color="red":
+    }
+    .Qsubheader{
+        font-size:18pt;
+        font-weight:600;
+        color="blue";
     }
 </style>
 """)
@@ -353,7 +364,7 @@ st.set_page_config(
     page_icon="🗾",
     layout="wide"
 )
-st.markdown(f'<p style="background-color:#0066cc;color:#33ff33;font-size:24px;border-radius:2%;">Q-LOGIQ</p>', unsafe_allow_html=True)
+st.markdown('<p class="Qheader">Q-LOGIQ</p>', unsafe_allow_html=True)
 gis_st, anr_st = st.columns([2, 1])
 
 if "client" not in st.session_state:
@@ -397,7 +408,7 @@ all_transport= df[df['Node'].str.startswith('M')]
 
 with anr_st:
   
-  anr_st.title('拠点リスト')
+  anr_st.markdown('<p class="Qsubheader">拠点リスト</p>',unsafe_allow_html=True)
   spinner_container = st.container()
   anr_st.write("開設されている避難所と配送拠点を選んでください")
   selected_shelter=anr_st.pills("避難所",all_shelter['施設名'].tolist(),selection_mode="multi")
