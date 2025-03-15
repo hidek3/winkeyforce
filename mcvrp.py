@@ -423,7 +423,7 @@ with gis_st:
   st_folium(base_map_copy, width=GIS_WIDE, height=GIS_HIGHT)
 
 if anr_st.button("最適経路探索開始"):
-    with st.spinner("処理中です。しばらくお待ちください..."):
+    with gis_st.spinner("処理中です。しばらくお待ちください..."):
         #gis_st.write(f'選択された避難所: {selected_shelter_node}//選択された配送拠点:{selected_transport_node}')
         if not selected_shelter_node or not selected_transport_node:
             anr_st.warning("避難所・配送拠点をそれぞれを1つ以上選択してください")
@@ -458,7 +458,7 @@ if anr_st.button("最適経路探索開始"):
             st.session_state["annering_param"]=annering_param
             st.session_state['redraw'] = True
             
-        st.success("処理が完了しました！")
+        gis_st.success("処理が完了しました！")
 # ========== 出力 ==========
 if st.session_state['best_tour'] !=None:
   annering_param=st.session_state["annering_param"]
