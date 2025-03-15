@@ -50,14 +50,20 @@ st.markdown(
     }
             
     .Qheader{
-        font-size:40px;
+        font-size:6rem;
         font-weight:600;
         color:red;
     }
     .Qsubheader{
-        font-size:30px;
+        font-size:3rem;
         font-weight:600;
         color:blue;
+    }
+    .caption{
+        font-size:1rem;
+        font-weight:400:
+        color:gray;
+        align:right;
     }
 </style>
 """,unsafe_allow_html=True
@@ -368,7 +374,7 @@ def sovle_annering(model, client, num_cal, timeout):
 
 
 
-st.markdown('<div class="Qheader">Q-LOGIQ</div>', unsafe_allow_html=True)
+st.markdown('<div class="Qheader">Q-LOGIQ<p class="caption">Quantum Logistics Intelligence & Quality Optimization  created by WINKY Force</p>/div>', unsafe_allow_html=True)
 
 gis_st, anr_st = st.columns([2, 1])
 
