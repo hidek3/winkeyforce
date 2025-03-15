@@ -50,14 +50,14 @@ st.markdown(
     }
             
     .Qheader{
-        font-size:40pt;
+        font-size:40px;
         font-weight:600;
-        color:"red":
+        color:red;
     }
     .Qsubheader{
-        font-size:30pt;
+        font-size:30px;
         font-weight:600;
-        color:"blue";
+        color:blue;
     }
 </style>
 """,unsafe_allow_html=True
@@ -368,7 +368,7 @@ def sovle_annering(model, client, num_cal, timeout):
 
 
 
-st.markdown('<p class="Qheader">Q-LOGIQ</p>', unsafe_allow_html=True)
+st.markdown('<div class="Qheader">Q-LOGIQ</div>', unsafe_allow_html=True)
 
 gis_st, anr_st = st.columns([2, 1])
 
@@ -413,7 +413,7 @@ all_transport= df[df['Node'].str.startswith('M')]
 
 with anr_st:
   
-  anr_st.markdown('<p class="Qsubheader">拠点リスト</p>',unsafe_allow_html=True)
+  anr_st.markdown('<div class="Qsubheader">拠点リスト</div>',unsafe_allow_html=True)
   spinner_container = st.container()
   anr_st.write("開設されている避難所と配送拠点を選んでください")
   selected_shelter=anr_st.pills("避難所",all_shelter['施設名'].tolist(),selection_mode="multi")
