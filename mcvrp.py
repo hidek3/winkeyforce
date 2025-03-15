@@ -339,7 +339,7 @@ st.set_page_config(
     page_icon="🗾",
     layout="wide"
 )
-
+st.markdown(f'<p style="background-color:#0066cc;color:#33ff33;font-size:24px;border-radius:2%;">Q-LOGIQ</p>', unsafe_allow_html=True)
 gis_st, anr_st = st.columns([2, 1])
 
 if "client" not in st.session_state:
@@ -381,12 +381,11 @@ selected_base=st.session_state['points']
 all_shelter= df[df['Node'].str.startswith('K')]
 all_transport= df[df['Node'].str.startswith('M')]
 
-st.title("Q-LOGIQ")
-
 with anr_st:
-  spinner_container = st.container()
+  
   anr_st.title('拠点リスト')
-  anr_st.write("開設されている避難所と拠点を選んでください")
+  spinner_container = st.container()
+  anr_st.write("開設されている避難所と配送拠点を選んでください")
   selected_shelter=anr_st.pills("避難所",all_shelter['施設名'].tolist(),selection_mode="multi")
   selected_transport=anr_st.pills("配送拠点",all_transport['施設名'].tolist(),selection_mode="multi")
   st.write("選択完了後、下のボタンを押してください。")
