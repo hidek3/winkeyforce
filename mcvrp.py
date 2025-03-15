@@ -39,7 +39,8 @@ st.set_page_config(
 #########################################
 # streamlit custom css
 #########################################
-st.markdown("""
+st.markdown(
+"""
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Sawarabi+Gothic&display=swap');
     body{
@@ -59,7 +60,8 @@ st.markdown("""
         color="blue";
     }
 </style>
-""")
+""",unsafe_allow_html=True
+)
 
 # 色指定
 _colors = [
