@@ -50,14 +50,14 @@ st.markdown(
     }
             
     .Qheader{
-        font-size:20pt;
+        font-size:40pt;
         font-weight:600;
-        color="red":
+        color:"red":
     }
     .Qsubheader{
-        font-size:18pt;
+        font-size:30pt;
         font-weight:600;
-        color="blue";
+        color:"blue";
     }
 </style>
 """,unsafe_allow_html=True
