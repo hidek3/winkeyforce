@@ -51,17 +51,17 @@ st.markdown(
     .Qheader{
     }
     .Qtitle{
-        font-size:6rem;
+        font-size:6em;
         font-weight:600;
         color:red;
     }
     .Qsubheader{
-        font-size:2.5rem;
+        font-size:2.5em;
         font-weight:600;
         color:blue;
     }
     .caption{
-        font-size:1.5rem;
+        font-size:1.5em;
         font-weight:400:
         color:gray;
         align:right;
@@ -373,7 +373,7 @@ def sovle_annering(model, client, num_cal, timeout):
 # ここからStreamlit本体
 ########################################
 
-st.markdown('<div class="Qheader"><p class="Qtitle">Q-LOGIQ</p> <p class="caption">Quantum Logistics Intelligence & Quality Optimization  created by WINKY Force</p></div>', unsafe_allow_html=True)
+st.markdown('<div class="Qheader"><span class="Qtitle">Q-LOGIQ</span> <span class="caption">Quantum Logistics Intelligence & Quality Optimization  created by WINKY Force</span></div>', unsafe_allow_html=True)
 
 gis_st, anr_st = st.columns([2, 1])
 
@@ -417,10 +417,9 @@ all_shelter= df[df['Node'].str.startswith('K')]
 all_transport= df[df['Node'].str.startswith('M')]
 
 with anr_st:
-  
-  anr_st.markdown('<div class="Qsubheader">拠点リスト</div>',unsafe_allow_html=True)
+  st.markdown('<div class="Qsubheader">拠点リスト</div>',unsafe_allow_html=True)
   spinner_container = st.container()
-  anr_st.write("開設されている避難所と配送拠点を選んでください")
+  st.write("開設されている避難所と配送拠点を選んでください")
   selected_shelter=anr_st.pills("避難所",all_shelter['施設名'].tolist(),selection_mode="multi")
   selected_transport=anr_st.pills("配送拠点",all_transport['施設名'].tolist(),selection_mode="multi")
   st.write("選択完了後、下のボタンを押してください。")
@@ -444,17 +443,17 @@ re_node_list = selected_base['配送拠点'] +selected_base['避難所']
 
 with gis_st:
   if best_tour !=None:
-    st.markdown('<div class="Qsubheader">配送最適化-計算結果</div>')
+    st.markdown('<div class="Qsubheader">配送最適化-計算結果</div>',unsafe_allow_html=True)
     selected_base=st.session_state['points']
     plot_select_marker(base_map_copy, df,selected_base)
     #re_node_list = selected_base['配送拠点'] +selected_base['避難所']
     base_map_copy = draw_route(base_map_copy, G, best_tour, path_df, re_node_list)
 
   elif selected_base !=None:
-    st.markdown('<div class="Qsubheader">避難所・配送拠点の設置</div>')
+    st.markdown('<div class="Qsubheader">避難所・配送拠点の設置</div>',unsafe_allow_html=True)
     plot_select_marker(base_map_copy, df,selected_base)
   else:
-    st.markdown('<div class="Qsubheader">避難所・配送拠点の設置</div>')
+    st.markdown('<div class="Qsubheader">避難所・配送拠点の設置</div>',unsafe_allow_html=True)
 
   folium.LayerControl().add_to(base_map_copy)
   st_folium(base_map_copy, width=GIS_WIDE, height=GIS_HIGHT)
