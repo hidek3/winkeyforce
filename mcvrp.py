@@ -49,16 +49,19 @@ st.markdown(
         font-weight: 400;
     }
     .Qheader{
+        background:siliver;
     }
     .Qtitle{
-        font-size:6em;
+        padding-left:2em;
+        padding-right:5em;
+        font-size:5em;
         font-weight:600;
-        color:red;
+        color:darkgray;
     }
     .Qsubheader{
         font-size:2.5em;
         font-weight:600;
-        color:blue;
+        color:gray;
     }
     .caption{
         font-size:1.5em;
