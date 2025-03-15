@@ -381,7 +381,10 @@ selected_base=st.session_state['points']
 all_shelter= df[df['Node'].str.startswith('K')]
 all_transport= df[df['Node'].str.startswith('M')]
 
+st.title("Q-LOGIQ")
+
 with anr_st:
+  spinner_container = st.container()
   anr_st.title('拠点リスト')
   anr_st.write("開設されている避難所と拠点を選んでください")
   selected_shelter=anr_st.pills("避難所",all_shelter['施設名'].tolist(),selection_mode="multi")
@@ -406,7 +409,6 @@ st.session_state['points']=selected_base
 re_node_list = selected_base['配送拠点'] +selected_base['避難所']
 
 with gis_st:
-  spinner_container = st.container()
   if best_tour !=None:
     st.title('配送最適化-計算結果')
     selected_base=st.session_state['points']
