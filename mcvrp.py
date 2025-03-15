@@ -406,6 +406,7 @@ st.session_state['points']=selected_base
 re_node_list = selected_base['配送拠点'] +selected_base['避難所']
 
 with gis_st:
+  spinner_container = st.container()
   if best_tour !=None:
     st.title('配送最適化-計算結果')
     selected_base=st.session_state['points']
@@ -423,42 +424,43 @@ with gis_st:
   st_folium(base_map_copy, width=GIS_WIDE, height=GIS_HIGHT)
 
 if anr_st.button("最適経路探索開始"):
-    with gis_st.spinner("処理中です。しばらくお待ちください..."):
+    with spinner_container:
+        with st.spinner("処理中です。しばらくお待ちください..."):
         #gis_st.write(f'選択された避難所: {selected_shelter_node}//選択された配送拠点:{selected_transport_node}')
-        if not selected_shelter_node or not selected_transport_node:
-            anr_st.warning("避難所・配送拠点をそれぞれを1つ以上選択してください")
-        else:
+            if not selected_shelter_node or not selected_transport_node:
+                anr_st.warning("避難所・配送拠点をそれぞれを1つ以上選択してください")
+            else:
             # ここでアニーリング等を実行
             #annering_param = set_parameter(np_df, path_df, op_data)
-            annering_param=set_parameter(path_df,selected_base)
-            model, x = set_annering_model(annering_param)
-            loop_max = 20
-            best_tour = None
-            best_obj = None
+                annering_param=set_parameter(path_df,selected_base)
+                model, x = set_annering_model(annering_param)
+                loop_max = 20
+                best_tour = None
+                best_obj = None
 
-            for a in range(loop_max):
-                result = sovle_annering(model, client, 1, 5000)
-                x_values = result.best.values
-                solution = x.evaluate(x_values)
-                sequence = onehot2sequence(solution)
-                candidate_tour = process_sequence(sequence)
-                cost_val = result.solutions[0].objective
+                for a in range(loop_max):
+                    result = sovle_annering(model, client, 1, 5000)
+                    x_values = result.best.values
+                    solution = x.evaluate(x_values)
+                    sequence = onehot2sequence(solution)
+                    candidate_tour = process_sequence(sequence)
+                    cost_val = result.solutions[0].objective
 
             # 条件に応じて更新(ここでは最初の解を使う例)
-                best_tour = candidate_tour
-                best_obj = cost_val
-                break
+                    best_tour = candidate_tour
+                    best_obj = cost_val
+                    break
 
-            best_obj = best_obj / 1000.0  # メートル→キロメートル
-            best_obj = round(best_obj, 1)  # 小数点第1位まで
+                best_obj = best_obj / 1000.0  # メートル→キロメートル
+                best_obj = round(best_obj, 1)  # 小数点第1位まで
 
         # 結果をセッションステートに保存
-            st.session_state["best_tour"] = best_tour
-            st.session_state["best_cost"] = best_obj
-            st.session_state["annering_param"]=annering_param
-            st.session_state['redraw'] = True
+                st.session_state["best_tour"] = best_tour
+                st.session_state["best_cost"] = best_obj
+                st.session_state["annering_param"]=annering_param
+                st.session_state['redraw'] = True
             
-        gis_st.success("処理が完了しました！")
+            gis_st.success("処理が完了しました！")
 # ========== 出力 ==========
 if st.session_state['best_tour'] !=None:
   annering_param=st.session_state["annering_param"]
