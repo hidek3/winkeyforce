@@ -31,6 +31,11 @@ from amplify import FixstarsClient
 from amplify import solve
 import copy
 
+st.set_page_config(
+    page_title="小田原市 周辺",
+    page_icon="🗾",
+    layout="wide"
+)
 #########################################
 # streamlit custom css
 #########################################
@@ -359,12 +364,10 @@ def sovle_annering(model, client, num_cal, timeout):
 # ここからStreamlit本体
 ########################################
 
-st.set_page_config(
-    page_title="小田原市 周辺",
-    page_icon="🗾",
-    layout="wide"
-)
+
+
 st.markdown('<p class="Qheader">Q-LOGIQ</p>', unsafe_allow_html=True)
+
 gis_st, anr_st = st.columns([2, 1])
 
 if "client" not in st.session_state:
