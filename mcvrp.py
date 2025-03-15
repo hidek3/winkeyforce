@@ -56,12 +56,12 @@ st.markdown(
         color:red;
     }
     .Qsubheader{
-        font-size:3rem;
+        font-size:2.5rem;
         font-weight:600;
         color:blue;
     }
     .caption{
-        font-size:1rem;
+        font-size:1.5rem;
         font-weight:400:
         color:gray;
         align:right;
@@ -373,7 +373,7 @@ def sovle_annering(model, client, num_cal, timeout):
 # ここからStreamlit本体
 ########################################
 
-st.markdown('<div class="Qheader"><p class="Qtitle"Q-LOGIQ</p> <p class="caption">Quantum Logistics Intelligence & Quality Optimization  created by WINKY Force</p></div>', unsafe_allow_html=True)
+st.markdown('<div class="Qheader"><p class="Qtitle">Q-LOGIQ</p> <p class="caption">Quantum Logistics Intelligence & Quality Optimization  created by WINKY Force</p></div>', unsafe_allow_html=True)
 
 gis_st, anr_st = st.columns([2, 1])
 
@@ -444,17 +444,17 @@ re_node_list = selected_base['配送拠点'] +selected_base['避難所']
 
 with gis_st:
   if best_tour !=None:
-    st.title('配送最適化-計算結果')
+    st.markdown('<div class="Qsubheader">配送最適化-計算結果</div>')
     selected_base=st.session_state['points']
     plot_select_marker(base_map_copy, df,selected_base)
     #re_node_list = selected_base['配送拠点'] +selected_base['避難所']
     base_map_copy = draw_route(base_map_copy, G, best_tour, path_df, re_node_list)
 
   elif selected_base !=None:
-    st.title('避難所・配送拠点の設置')
+    st.markdown('<div class="Qsubheader">避難所・配送拠点の設置</div>')
     plot_select_marker(base_map_copy, df,selected_base)
   else:
-    st.title('避難所・配送拠点の設置')
+    st.markdown('<div class="Qsubheader">避難所・配送拠点の設置</div>')
 
   folium.LayerControl().add_to(base_map_copy)
   st_folium(base_map_copy, width=GIS_WIDE, height=GIS_HIGHT)
