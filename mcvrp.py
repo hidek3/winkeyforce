@@ -52,14 +52,14 @@ st.markdown(
         background:siliver;
     }
     .Qtitle{
-        padding-left:2em;
-        padding-right:5em;
-        font-size:5em;
+        padding-left:1em;
+        padding-right:3em;
+        font-size:4em;
         font-weight:600;
         color:darkgray;
     }
     .Qsubheader{
-        font-size:2.5em;
+        font-size:2em;
         font-weight:600;
         color:gray;
     }
