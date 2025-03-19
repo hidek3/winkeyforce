@@ -105,7 +105,7 @@ node_data =  "kyoten_geocode_Revised.json"
 numOfPeople = "number_of_people.csv"
 #geojson_path = root_dir + "GIS/N03-20240101_14_GML/N03-20240101_14.geojson"
 geojson_path = root_dir + "N03-20240101_14.geojson"
-route_file = "path_list_v2.json"
+route_file = "path_list_v20250317.json"
 Map_Tile='https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png'
 
 GIS_HIGHT=650
