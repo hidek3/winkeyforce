@@ -110,7 +110,7 @@ Map_Tile='https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png'
 
 GIS_HIGHT=650
 GIS_WIDE=1000
-GIS_ZOOM=12
+GIS_ZOOM=12.5
 
 
 ########################################
