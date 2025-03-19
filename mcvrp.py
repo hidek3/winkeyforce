@@ -376,7 +376,8 @@ def sovle_annering(model, client, num_cal, timeout):
 # ここからStreamlit本体
 ########################################
 
-st.markdown('<div class="Qheader"><span class="Qtitle">Q-LOGIQ</span> <span class="caption">Quantum Logistics Intelligence & Quality Optimization  created by WINKY Force</span></div>', unsafe_allow_html=True)
+#st.markdown('<div class="Qheader"><span class="Qtitle">Q-LOGIQ</span> <span class="caption">Quantum Logistics Intelligence & Quality Optimization  created by WINKY Force</span></div>', unsafe_allow_html=True)
+st.markdown('<div class="Qhead"><span class="Qtitle">えるくお</span> <span class="caption">**Emergency Logistics Quantum Optiviser** Created by WINKY Force</span></div>', unsafe_allow_html=True)
 
 gis_st, anr_st = st.columns([2, 1])
 
