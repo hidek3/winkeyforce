@@ -97,6 +97,7 @@ _colors = [
 #root_dir = "/content/drive/MyDrive/" + dir_name
 root_dir="./"
 
+
 #######################
 #　ファイル指定
 #######################
@@ -107,6 +108,9 @@ numOfPeople = "number_of_people.csv"
 geojson_path = root_dir + "N03-20240101_14.geojson"
 route_file = "path_list_v20250317.json"
 Map_Tile='https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png'
+
+if "num_of_people" not in st.session_state:
+   np_df = pd.read_csv(root_dir + numOfPeople,header=None, names=['Node', 'num']) #人数データ
 
 GIS_HIGHT=650
 GIS_WIDE=1000
@@ -410,8 +414,7 @@ base_map=map_data['base_map']
 base_map_copy = copy.deepcopy(base_map)
 
 # --- セッションステートで計算結果を保持
-if "num_of_people" not in st.session_state:
-   np_df = pd.read_csv(root_dir + numOfPeople,header=None, names=['Node', 'num']) #人数データ
+
    st.session_state["best_tournum_of_people"] = np_df
 if "best_tour" not in st.session_state:
     st.session_state["best_tour"] = None
