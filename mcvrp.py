@@ -482,7 +482,7 @@ if anr_st.button("最適経路探索開始"):
                 best_obj = None
 
                 for a in range(loop_max):
-                    result = sovle_annering(model, client, 1, 5000)
+                    result = sovle_annering(model, client, 1, 10000)
                     x_values = result.best.values
                     solution = x.evaluate(x_values)
                     sequence = onehot2sequence(solution)
@@ -492,7 +492,7 @@ if anr_st.button("最適経路探索開始"):
             # 条件に応じて更新(ここでは最初の解を使う例)
                     best_tour = candidate_tour
                     best_obj = cost_val
-                    
+
                     if not any(k in best_tour[k][1:-1] for k in range(annering_param['nvehicle'])):
                        break
 
