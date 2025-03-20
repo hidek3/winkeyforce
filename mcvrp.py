@@ -112,6 +112,7 @@ GIS_HIGHT=650
 GIS_WIDE=1000
 GIS_ZOOM=12.2
 
+FORMAT_HTML ='<div><p>[{type}]</p><p><b>{name}</b></p><p>{address}</p><div>'
 
 ########################################
 # Folium を使う表示系関数
@@ -176,9 +177,11 @@ def plot_select_marker(m, data,op_data):
         else:
           continue
 
+        html =FORMAT_HTML.format( name=row['施設名'],address=row['住所'],type=row['拠点種類'])
         folium.Marker(
             location=[row['緯度'], row['経度']],
-            popup=f"{row['施設名']} / {row['住所']} ({row['拠点種類']})",
+            #popup=f"{row['施設名']} / {row['住所']} ({row['拠点種類']})",
+            popup=html
             icon=folium.Icon(color=icol)
         ).add_to(layer)
 
