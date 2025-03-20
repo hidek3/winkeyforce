@@ -461,6 +461,8 @@ with gis_st:
     plot_select_marker(base_map_copy, df,selected_base)
   else:
     st.markdown('<div class="Qsubheader">避難所・配送拠点の設置</div>',unsafe_allow_html=True)
+  with st.expander("被災者数と必要物資量"):
+     st.dataframe(np_df)
 
   folium.LayerControl().add_to(base_map_copy)
   st_folium(base_map_copy, width=GIS_WIDE, height=GIS_HIGHT)
