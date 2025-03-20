@@ -111,7 +111,8 @@ Map_Tile='https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png'
 
 if "num_of_people" not in st.session_state:
    np_df = pd.read_csv(root_dir + numOfPeople,header=None, names=['Node', 'num']) #人数データ
-   
+   st.session_state["num_of_people"] = np_df
+
 GIS_HIGHT=650
 GIS_WIDE=1000
 GIS_ZOOM=12.2
@@ -414,8 +415,6 @@ base_map=map_data['base_map']
 base_map_copy = copy.deepcopy(base_map)
 
 # --- セッションステートで計算結果を保持
-
-   st.session_state["best_tournum_of_people"] = np_df
 if "best_tour" not in st.session_state:
     st.session_state["best_tour"] = None
 if "best_cost" not in st.session_state:
