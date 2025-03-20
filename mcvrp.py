@@ -111,7 +111,7 @@ Map_Tile='https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png'
 
 if "num_of_people" not in st.session_state:
    np_df = pd.read_csv(root_dir + numOfPeople,header=None, names=['Node', 'num']) #人数データ
-
+   
 GIS_HIGHT=650
 GIS_WIDE=1000
 GIS_ZOOM=12.2
