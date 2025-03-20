@@ -107,7 +107,6 @@ numOfPeople = "number_of_people.csv"
 geojson_path = root_dir + "N03-20240101_14.geojson"
 route_file = "path_list_v20250317.json"
 Map_Tile='https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png'
-np_df = pd.read_csv(root_dir + numOfPeople,header=None, names=['Node', 'num']) #人数データ
 
 GIS_HIGHT=650
 GIS_WIDE=1000
@@ -401,6 +400,9 @@ base_map=map_data['base_map']
 base_map_copy = copy.deepcopy(base_map)
 
 # --- セッションステートで計算結果を保持
+if "num_of_people" not in st.session_state:
+   np_df = pd.read_csv(root_dir + numOfPeople,header=None, names=['Node', 'num']) #人数データ
+   st.session_state["best_tournum_of_people"] = np_df
 if "best_tour" not in st.session_state:
     st.session_state["best_tour"] = None
 if "best_cost" not in st.session_state:
@@ -418,6 +420,7 @@ st.session_state['redraw'] = False
 
 best_tour=st.session_state['best_tour']
 selected_base=st.session_state['points']
+np_df= st.session_state["best_tournum_of_people"]
 
 # すべての拠点のリストを取得
 all_shelter= df[df['Node'].str.startswith('K')]
@@ -464,8 +467,22 @@ with gis_st:
        shelter_df['Name']=shelter_df['Node'].apply(lambda x: get_point_name(df,x))
        shelter_df2 = pd.merge(shelter_df, np_df, on='Node', how='left')
        shelter_df2['demand']=shelter_df2['num'].apply(lambda x: x*40/1000)
-       shelter_df2.columns=['ノード','避難所','避難者数（人）','必要物資量（トン）']
-       edited_shelter_df=st.data_editor(shelter_df2)
+       #shelter_df2.columns=['ノード','避難所','避難者数（人）','必要物資量（トン）']
+       edited_shelter_df=st.data_editor(shelter_df2,
+                                        column_config={
+                                        "Node": {"name": "ノード", "editable": False},
+                                        "Name": {"name": "避難所", "editable": False},
+                                        "num": {"name": "避難者数（人）"},
+                                        "demand": {"name": "必要物資量", "editable": False}
+                                        }                      
+        )
+       for index, row in edited_shelter_df.iterrows():
+          node=row['Node']
+          num=row['num']
+          np_df.num[np_df.Node==node]=num
+       st.session_state['num_of_people']=np_df  
+          
+
   else:
     st.markdown('<div class="Qsubheader">避難所・配送拠点の設置</div>',unsafe_allow_html=True)
 
