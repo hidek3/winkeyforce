@@ -477,8 +477,10 @@ with gis_st:
     st.markdown('<div class="Qsubheader">避難所・配送拠点の設置</div>',unsafe_allow_html=True)
     plot_select_marker(base_map_copy, df,selected_base)
     with st.expander("被災者数と必要物資量"):
-       if st.session_state['shelter_df'] != None:
+       
+       if st.session_state['shelter_df'] is not None:
           change_num_of_people()
+
        np_df = st.session_state['num_of_people']
        shelter_df=pd.DataFrame( selected_shelter_node,columns=['Node'] )
        shelter_df['Name']=shelter_df['Node'].apply(lambda x: get_point_name(df,x))
