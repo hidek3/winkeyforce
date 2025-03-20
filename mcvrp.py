@@ -465,7 +465,7 @@ with gis_st:
        shelter_df2 = pd.merge(shelter_df, np_df, on='Node', how='left')
        shelter_df2['demand']=shelter_df2['num'].apply(lambda x: x*40/1000)
        shelter_df2.columns=['ノード','避難所','避難者数（人）','必要物資量（トン）']
-       st.dataframe(shelter_df2)
+       edited_shelter_df=st.data_editor(shelter_df2)
   else:
     st.markdown('<div class="Qsubheader">避難所・配送拠点の設置</div>',unsafe_allow_html=True)
 
