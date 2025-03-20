@@ -492,7 +492,9 @@ if anr_st.button("最適経路探索開始"):
             # 条件に応じて更新(ここでは最初の解を使う例)
                     best_tour = candidate_tour
                     best_obj = cost_val
-                    break
+                    
+                    if not any(k in best_tour[k][1:-1] for k in range(annering_param['nvehicle'])):
+                       break
 
                 best_obj = best_obj / 1000.0  # メートル→キロメートル
                 best_obj = round(best_obj, 1)  # 小数点第1位まで
