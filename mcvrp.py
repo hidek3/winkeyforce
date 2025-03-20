@@ -481,12 +481,13 @@ with gis_st:
        shelter_df2['demand']=shelter_df2['num'].apply(lambda x: x*40/1000)
        #shelter_df2.columns=['ノード','避難所','避難者数（人）','必要物資量（トン）']
        st.session_state['shelter_df']=st.data_editor(shelter_df2,
-                                        column_config={
-                                        "Node": {"name": "ノード", "editable": False},
-                                        "Name": {"name": "避難所", "editable": False},
-                                        "num": {"name": "避難者数（人）"},
-                                        "demand": {"name": "必要物資量", "editable": False}
-                                        }                      
+                                      column_config={
+                                        "Node": {"lable": "ノード", "disabled": True},
+                                        "Name": {"label": "避難所", "disabled": True},
+                                        "num": {"label": "避難者数（人）"},
+                                        "demand": {"label": "必要物資量", "disabled": True}
+                                        },
+                                        on_change=change_num_of_people()                      
         )
  
   else:
