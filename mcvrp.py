@@ -430,7 +430,6 @@ if 'num_transport' not in st.session_state:
 if 'annering_param' not in st.session_state:
     st.session_state["annering_param"] = None
 
-
 st.session_state['redraw'] = False
 
 best_tour=st.session_state['best_tour']
@@ -483,6 +482,7 @@ with gis_st:
        shelter_df2 = pd.merge(shelter_df, np_df, on='Node', how='left')
        shelter_df2['demand']=shelter_df2['num'].apply(lambda x: x*40/1000)
        #shelter_df2.columns=['ノード','避難所','避難者数（人）','必要物資量（トン）']
+       st.session_state['shelter_df']=shelter_df2
        st.session_state['shelter_df']=st.data_editor(shelter_df2,
                                       column_config={
                                         "Node": {"lable": "ノード", "disabled": True},
