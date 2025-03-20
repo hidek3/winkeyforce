@@ -107,6 +107,7 @@ numOfPeople = "number_of_people.csv"
 geojson_path = root_dir + "N03-20240101_14.geojson"
 route_file = "path_list_v20250317.json"
 Map_Tile='https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png'
+np_df = pd.read_csv(root_dir + numOfPeople,header=None, names=['Node', 'num']) #人数データ
 
 GIS_HIGHT=650
 GIS_WIDE=1000
@@ -178,7 +179,7 @@ def plot_select_marker(m, data,op_data):
           continue
 
         html =FORMAT_HTML.format( name=row['施設名'],address=row['住所'],type=row['拠点種類'])
-        popup = folium.Popup(html, max_width=200)
+        popup = folium.Popup(html, max_width=300)
         folium.Marker(
             location=[row['緯度'], row['経度']],
             #popup=f"{row['施設名']} / {row['住所']} ({row['拠点種類']})",
@@ -298,10 +299,9 @@ def set_distance_matrix(path_df, node_list):
             distance_matrix[i, j] = dis
     return distance_matrix
 
-def set_parameter( path_df, op_data):
+def set_parameter( path_df, op_data,np_df):
     annering_param = {}
-    np_df = pd.read_csv(root_dir + numOfPeople) #人数データ
-
+    
     re_node_list = op_data['配送拠点'] + op_data['避難所']
     distance_matrix = set_distance_matrix(path_df, re_node_list)
 
@@ -313,8 +313,11 @@ def set_parameter( path_df, op_data):
     avg_nbase_per_vehicle = (nbase - n_transport_base) // nvehicle
 
     demand = np.zeros(nbase)
+    shel_data=op_data['避難所']
     for i in range(nbase - n_transport_base - 1):
-        demand[i + n_transport_base] = np_df.iloc[i,1]
+        node=shel_data[i]
+        #demand[i + n_transport_base] = np_df.iloc[i,1]
+        demand[i + n_transport_base] = np_df[np_df['Node']==node]['num']
 
     demand_max = np.max(demand)
     demand_mean = np.mean(demand[nvehicle:])
@@ -417,7 +420,6 @@ st.session_state['redraw'] = False
 best_tour=st.session_state['best_tour']
 selected_base=st.session_state['points']
 
-
 # すべての拠点のリストを取得
 all_shelter= df[df['Node'].str.startswith('K')]
 all_transport= df[df['Node'].str.startswith('M')]
@@ -473,7 +475,7 @@ if anr_st.button("最適経路探索開始"):
             else:
             # ここでアニーリング等を実行
             #annering_param = set_parameter(np_df, path_df, op_data)
-                annering_param=set_parameter(path_df,selected_base)
+                annering_param=set_parameter(path_df,selected_base,np_df)
                 model, x = set_annering_model(annering_param)
                 loop_max = 20
                 best_tour = None
