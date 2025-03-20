@@ -463,7 +463,7 @@ with gis_st:
        shelter_df=pd.DataFrame( selected_shelter_node,columns=['Node'] )
        shelter_df['Name']=shelter_df['Node'].apply(lambda x: get_point_name(df,x))
        sheter_df=pd.merge(shelter_df, np_df, on='Node', how='left')
-       shelter_df['demand']=shelter_df['num'].apply(lambda x: x*40/1000)
+       #shelter_df['demand']=shelter_df['num'].apply(lambda x: x*40/1000)
        st.dataframe(shelter_df)
   else:
     st.markdown('<div class="Qsubheader">避難所・配送拠点の設置</div>',unsafe_allow_html=True)
