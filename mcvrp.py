@@ -218,7 +218,7 @@ def draw_route_v2(m, G, best_routes, path_df, node_name_list):
               route_gdf.explore(
                   m=layer,  # folium.FeatureGroupオブジェクトを指定
                   color=_colors[k % len(_colors)],
-                  style_kwds={"weight": 5.0, "opacity": 0.5},
+                  style_kwds={"weight": 3.0, "opacity": 0.5},
               )
     #folium.LayerControl().add_to(m)
     return 
