@@ -178,10 +178,11 @@ def plot_select_marker(m, data,op_data):
           continue
 
         html =FORMAT_HTML.format( name=row['施設名'],address=row['住所'],type=row['拠点種類'])
+        popup = folium.Popup(html, max_width=200)
         folium.Marker(
             location=[row['緯度'], row['経度']],
             #popup=f"{row['施設名']} / {row['住所']} ({row['拠点種類']})",
-            popup=html,
+            popup=popup,
             icon=folium.Icon(color=icol)
         ).add_to(layer)
 
