@@ -112,6 +112,8 @@ Map_Tile='https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png'
 if "num_of_people" not in st.session_state:
    np_df = pd.read_csv(root_dir + numOfPeople,header=None, names=['Node', 'num']) #人数データ
    st.session_state["num_of_people"] = np_df
+if 'shelter_df' not in st.session_state:
+   st.session_state['shelter_df'] = None
 
 GIS_HIGHT=650
 GIS_WIDE=1000
@@ -427,8 +429,7 @@ if 'num_transport' not in st.session_state:
     st.session_state['num_transport'] = 0
 if 'annering_param' not in st.session_state:
     st.session_state["annering_param"] = None
-if 'shelter_df' not in st.session_state:
-    st.session_state['shelter_df'] = None
+
 
 st.session_state['redraw'] = False
 
