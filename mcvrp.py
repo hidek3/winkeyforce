@@ -434,7 +434,7 @@ st.session_state['redraw'] = False
 
 best_tour=st.session_state['best_tour']
 selected_base=st.session_state['points']
-np_df= st.session_state["best_tournum_of_people"]
+np_df= st.session_state["num_of_people"]
 
 # すべての拠点のリストを取得
 all_shelter= df[df['Node'].str.startswith('K')]
