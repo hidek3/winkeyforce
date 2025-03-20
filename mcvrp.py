@@ -181,10 +181,9 @@ def plot_select_marker(m, data,op_data):
         folium.Marker(
             location=[row['緯度'], row['経度']],
             #popup=f"{row['施設名']} / {row['住所']} ({row['拠点種類']})",
-            popup=html
+            popup=html,
             icon=folium.Icon(color=icol)
         ).add_to(layer)
-
 
 def draw_route(m, G, best_routes, path_df, node_name_list):
     for k, vehicle_route in best_routes.items():
@@ -230,7 +229,6 @@ def get_point_name(data,node):
 def set_map_data():
 
   map_data={}
-
   map_data['node_d']=pd.read_json(root_dir + node_data)    #拠点データ
 
   administrative_district = gpd.read_file(geojson_path)
