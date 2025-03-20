@@ -112,7 +112,7 @@ GIS_HIGHT=650
 GIS_WIDE=1000
 GIS_ZOOM=12.2
 
-FORMAT_HTML ='<div><p>[{type}]</p><p><b>{name}</b></p><p>{address}</p><div>'
+FORMAT_HTML ='<div>【{type}】<br/><b>{name}</b><br/>住所:{address}<div>'
 
 ########################################
 # Folium を使う表示系関数
