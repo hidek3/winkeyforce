@@ -218,7 +218,7 @@ def draw_route_v2(m, G, best_routes, path_df, node_name_list):
               route_gdf.explore(
                   m=layer,  # folium.FeatureGroupオブジェクトを指定
                   color=_colors[k % len(_colors)],
-                  style_kwds={"weight": 10.0, "opacity": 0.5},
+                  style_kwds={"weight": 5.0, "opacity": 0.5},
               )
     #folium.LayerControl().add_to(m)
     return 
@@ -380,7 +380,6 @@ def sovle_annering(model, client, num_cal, timeout):
 ########################################
 # ここからStreamlit本体
 ########################################
-
 #st.markdown('<div class="Qheader"><span class="Qtitle">Q-LOGIQ</span> <span class="caption">Quantum Logistics Intelligence & Quality Optimization  created by WINKY Force</span></div>', unsafe_allow_html=True)
 st.markdown('<div class="Qheader"><span class="Qtitle">えるくお</span> <span class="caption">--Emergency Logistics Quantum Optiviser-- Created by WINKY Force</span></div>', unsafe_allow_html=True)
 
