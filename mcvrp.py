@@ -247,6 +247,16 @@ def set_map_data():
 
   return(map_data)
 
+def change_num_of_people():
+   np_df=st.session_state['num_of_people']
+   shelter_df=st.session_state['shelter_df']
+   
+   for index, row in shelter_df.iterrows():
+        node=row['Node']
+        num=row['num']
+        np_df.num[np_df.Node==node]=num
+   st.session_state['num_of_people']=np_df 
+
 ########################################
 # アニーリング周り(以前の関数群)
 ########################################
@@ -415,6 +425,8 @@ if 'num_transport' not in st.session_state:
     st.session_state['num_transport'] = 0
 if 'annering_param' not in st.session_state:
     st.session_state["annering_param"] = None
+if 'shelter_df' not in st.session_state:
+    st.session_state['shelter_df'] = None
 
 st.session_state['redraw'] = False
 
@@ -468,7 +480,7 @@ with gis_st:
        shelter_df2 = pd.merge(shelter_df, np_df, on='Node', how='left')
        shelter_df2['demand']=shelter_df2['num'].apply(lambda x: x*40/1000)
        #shelter_df2.columns=['ノード','避難所','避難者数（人）','必要物資量（トン）']
-       edited_shelter_df=st.data_editor(shelter_df2,
+       st.session_state['shelter_df']=st.data_editor(shelter_df2,
                                         column_config={
                                         "Node": {"name": "ノード", "editable": False},
                                         "Name": {"name": "避難所", "editable": False},
@@ -476,13 +488,7 @@ with gis_st:
                                         "demand": {"name": "必要物資量", "editable": False}
                                         }                      
         )
-       for index, row in edited_shelter_df.iterrows():
-          node=row['Node']
-          num=row['num']
-          np_df.num[np_df.Node==node]=num
-       st.session_state['num_of_people']=np_df  
-          
-
+ 
   else:
     st.markdown('<div class="Qsubheader">避難所・配送拠点の設置</div>',unsafe_allow_html=True)
 
