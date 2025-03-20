@@ -459,10 +459,13 @@ with gis_st:
   elif selected_base !=None:
     st.markdown('<div class="Qsubheader">避難所・配送拠点の設置</div>',unsafe_allow_html=True)
     plot_select_marker(base_map_copy, df,selected_base)
+    with st.expander("被災者数と必要物資量"):
+       shelter_df=pd.DataFrame( selected_shelter_node )
+       shelter_df['Name'] = get_point_name(df,shelter_df['Node'])
+       st.dataframe(shelter_df)
   else:
     st.markdown('<div class="Qsubheader">避難所・配送拠点の設置</div>',unsafe_allow_html=True)
-  with st.expander("被災者数と必要物資量"):
-     st.dataframe(np_df)
+
 
   folium.LayerControl().add_to(base_map_copy)
   st_folium(base_map_copy, width=GIS_WIDE, height=GIS_HIGHT)
