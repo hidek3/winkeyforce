@@ -261,7 +261,8 @@ def change_num_of_people():
    for index, row in shelter_df.iterrows():
         node=row['Node']
         num=row['num']
-        np_df.num[np_df.Node==node]=num
+        #np_df.num[np_df.Node==node]=num
+        np_df.loc[np_df.Node==node, 'num'] = num
    st.session_state['num_of_people']=np_df
 
 ########################################
@@ -333,7 +334,8 @@ def set_parameter( path_df, op_data,np_df):
     for i in range(nbase - n_transport_base - 1):
         node=shel_data[i]
         #demand[i + n_transport_base] = np_df.iloc[i,1]
-        demand[i + n_transport_base] = np_df[np_df['Node']==node]['num']
+        #demand[i + n_transport_base] = np_df[np_df['Node']==node]['num']
+        demand[i + n_transport_base] = np_df.loc[np_df.Node==node, 'num'].iloc[0]
 
     demand_max = np.max(demand)
     demand_mean = np.mean(demand[nvehicle:])
