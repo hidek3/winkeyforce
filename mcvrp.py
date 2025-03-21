@@ -580,7 +580,7 @@ if st.session_state['best_tour'] !=None:
      node_list.append(p_node)
      #gis_st.write(r_str)
 
-  result_df=pd.DataFrame({"ノードNo.":node_no,"必要物資量"weight_list,"走行距離":distance_list,"巡回順":node_list})
+  result_df=pd.DataFrame({"ノードNo.":node_no,"必要物資量":weight_list,"走行距離":distance_list,"巡回順":node_list})
   gis_st.table(result_df)
   all_str=f'総物資量:{weight_all/1000*4:.2f}t/総距離: {best_obj} km'
   gis_st.write(all_str)
