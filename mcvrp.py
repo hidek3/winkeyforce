@@ -548,9 +548,15 @@ if st.session_state['best_tour'] !=None:
   annering_param=st.session_state["annering_param"]
   best_obj=st.session_state['best_cost']
   best_tour=st.session_state['best_tour']
-  gis_st.write(f"#### 計算結果: 総距離: {best_obj} km")
+  gis_st.write(f"#### 計算結果")
   distance_matrix=annering_param['distance_matrix']
   demand=annering_param['demand']
+
+  node_no=[]
+  weight_list=[]
+  distance_list=[]
+  node_list=[]
+  weight_all=0
   for item in best_tour.items():
      distance=0
      weight=0
@@ -564,8 +570,17 @@ if st.session_state['best_tour'] !=None:
      
      it=item[1][len(item[1])-1]
      p_node += f'{get_point_name(df,re_node_list[it])}'
-     r_str=f"ルート{item[0]} (走行距離:{distance/1000:.2f}km/配送量:{weight/1000*4:.2f}t)  \n【拠点】{p_node}"
-     gis_st.write(r_str)
+     #r_str=f"ルート{item[0]} (走行距離:{distance/1000:.2f}km/配送量:{weight/1000*4:.2f}t)  \n【拠点】{p_node}"
+     weight_all += weight
+     node_no.append(item[0])
+     weight_list.append(f'{weight/1000*4:.2f}t')
+     distance_list.append(f'{distance/1000:.2f}km')
+     node_list.append(p_node)
+     #gis_st.write(r_str)
+     result_df=pd.DataFrame([node_no,weight_list,distance_list,node_list],columns=["ノードNo.","必要物資量","走行距離","巡回順"])
+     gis_st.table(result_df)
+     all_str=f'総物資量:{weight_all/1000*4:.2f}t/総距離: {best_obj} km'
+     gis_st.write(all_str)
   #best_tour_markdown = "\n".join([f"{key}: {value}" for key, value in best_tour.items()])
   #gis_st.markdown(best_tour_markdown)
 
