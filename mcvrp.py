@@ -17,7 +17,7 @@ from datetime import timedelta
 
 import streamlit as st
 from streamlit_folium import st_folium
-from streamlit.column_config import stColumn
+from streamlit.column_config.Coulmn import st_column
 
 #Fixstars Amplify 関係のインポート
 import amplify
@@ -585,11 +585,11 @@ if st.session_state['best_tour'] !=None:
 
   result_df=pd.DataFrame({"ノードNo.":node_no,"配送拠点":base_list,"必要物資量":weight_list,"走行距離":distance_list,"巡回順":node_list})
   columnConfig={
-                "ノードNo.": stColumn(width=50),
-                "配送拠点":  stColumn(width=50),
-                "必要物資量": stColumn(width=50),
-                "走行距離": stColumn(width=50),
-                "巡回順": stColumn(width=200) 
+                "ノードNo.": st_column(width=50),
+                "配送拠点":  st_column(width=50),
+                "必要物資量": st_column(width=50),
+                "走行距離": st_column(width=50),
+                "巡回順": st_column(width=200) 
   }
   gis_st.table(result_df,
                column_config = columnConfig
