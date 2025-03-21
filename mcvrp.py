@@ -577,10 +577,12 @@ if st.session_state['best_tour'] !=None:
      distance_list.append(f'{distance/1000:.2f}km')
      node_list.append(p_node)
      #gis_st.write(r_str)
-     result_df=pd.DataFrame([node_no,weight_list,distance_list,node_list],columns=["ノードNo.","必要物資量","走行距離","巡回順"])
-     gis_st.table(result_df)
-     all_str=f'総物資量:{weight_all/1000*4:.2f}t/総距離: {best_obj} km'
-     gis_st.write(all_str)
+
+  result_df=pd.DataFrame([node_no,weight_list,distance_list,node_list],columns=["ノードNo.","必要物資量","走行距離","巡回順"])
+  gis_st.table(result_df)
+  all_str=f'総物資量:{weight_all/1000*4:.2f}t/総距離: {best_obj} km'
+  gis_st.write(all_str)
+  
   #best_tour_markdown = "\n".join([f"{key}: {value}" for key, value in best_tour.items()])
   #gis_st.markdown(best_tour_markdown)
 
