@@ -572,13 +572,14 @@ if st.session_state['best_tour'] !=None:
      p_node += f'{get_point_name(df,re_node_list[it])}'
      #r_str=f"ルート{item[0]} (走行距離:{distance/1000:.2f}km/配送量:{weight/1000*4:.2f}t)  \n【拠点】{p_node}"
      weight_all += weight
+     w_str=f'{weight/1000*4:.2f}t'
+     d_str=f'{distance/1000:.2f}km' 
      node_no.append(item[0])
-     weight_list.append(f'{weight/1000*4:.2f}t')
-     distance_list.append(f'{distance/1000:.2f}km')
+     weight_list.append(w_str)
+     distance_list.append(d_str)
      node_list.append(p_node)
      #gis_st.write(r_str)
-     
-  print(node_no)
+
   result_df=pd.DataFrame([node_no,weight_list,distance_list,node_list],columns=["ノードNo.","必要物資量","走行距離","巡回順"])
   gis_st.table(result_df)
   all_str=f'総物資量:{weight_all/1000*4:.2f}t/総距離: {best_obj} km'
