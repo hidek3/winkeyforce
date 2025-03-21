@@ -583,7 +583,15 @@ if st.session_state['best_tour'] !=None:
      #gis_st.write(r_str)
 
   result_df=pd.DataFrame({"ノードNo.":node_no,"配送拠点":base_list,"必要物資量":weight_list,"走行距離":distance_list,"巡回順":node_list})
-  gis_st.table(result_df)
+  gis_st.table(result_df,
+               column_config = {
+                "ノードNo.": Column(width=50),
+                "配送拠点": Column(width=50),
+                "必要物資量": Column(width=50),
+                "走行距離": Column(width=50),
+                "巡回順": Column(width=200)
+               }
+    )
   all_str=f'総物資量:{weight_all/1000*4:.2f}t/総距離: {best_obj} km'
   gis_st.write(all_str)
 
