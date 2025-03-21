@@ -590,7 +590,7 @@ if st.session_state['best_tour'] !=None:
                 "走行距離": st.column_config.Column(width=50),
                 "巡回順": st.column_config.Column(width=200) 
   }
-  gis_st.table(result_df,
+  gis_st.dataframe(result_df,
                column_config = columnConfig
     )
   all_str=f'総物資量:{weight_all/1000*4:.2f}t/総距離: {best_obj} km'
