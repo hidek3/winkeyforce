@@ -586,11 +586,11 @@ if st.session_state['best_tour'] !=None:
 
   result_df=pd.DataFrame({"ノードNo.":node_no,"配送拠点":base_list,"必要物資量":weight_list,"走行距離":distance_list,"巡回順":node_list})
   columnConfig={
-                "ノードNo.": st.column_config.Column(width=25),
-                "配送拠点":  st.column_config.Column(width=100),
-                "必要物資量": st.column_config.Column(width=30),
-                "走行距離": st.column_config.Column(width=30),
-                "巡回順": st.column_config.Column(width=150) 
+                "ノードNo.": st.column_config.Column(width="small"),
+                "配送拠点":  st.column_config.Column(width='medium'),
+                "必要物資量": st.column_config.Column(width='small'),
+                "走行距離": st.column_config.Column(width='small'),
+                "巡回順": st.column_config.Column(width='large') 
   }
   gis_st.dataframe(result_df,
                column_config = columnConfig
