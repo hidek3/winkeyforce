@@ -271,7 +271,7 @@ def change_num_of_people():
 
 def start_amplify():
   client = FixstarsClient()
-  client.token = "AE/UnDbUvmjJ2xmrFRThrutxzPiVjxikMSk"  # 有効なトークンを設定
+  client.token = "AE/D2OrJ1DWlbR1kVO7qOVfL0vJMv68VTQG"  # 有効なトークンを設定
 
   return client
 
